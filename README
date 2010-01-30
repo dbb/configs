@@ -1,5 +1,8 @@
 ### dbbolton's configs
 
-This git repository is a storage facility for my various config files. I plan to put the intended purpose for each file in its name. For example, "$HOME/.config/openbox/rc.xml" is simply called "openbox-rc.xml".
+This git repository is a storage facility for my various config files. I
+plan to put the intended purpose for each file in its name. For example, 
+"$HOME/.config/openbox/rc.xml" is simply called "openbox-rc.xml".
 
+I have also removed the initial period from some file names.
 
