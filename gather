@@ -1,0 +1,39 @@
+#!/usr/bin/env perl
+use strict;
+use warnings;
+use File::Copy;
+use autodie;
+
+my $ob_dir = "$ENV{HOME}/.config/openbox";
+my $dest = "$ENV{HOME}/source/github/configs";
+
+my @files = qw(
+  .config/openbox/autostart.sh
+  .config/openbox/menu.xml
+  .config/openbox/rc.xml
+  .screenrc
+  .vimrc
+  .Xdefaults
+  .zshrc
+);
+
+my @names = qw(
+  openbox-autostart.sh
+  openbox-menu.xml
+  openbox-rc.xml
+  screenrc
+  vimrc
+  Xdefaults
+  zshrc
+);
+
+my $i = 0;
+foreach (@files) {
+  print "Copying ~/$_ to $dest/$names[$i]\n";
+  copy("$ENV{HOME}/$_", "$dest/$names[$i]");
+  $i++;
+}
+
+system "git add ./*";
+system "git commit -m 'updating everything'";
+system "git push origin master";

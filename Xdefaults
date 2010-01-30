@@ -1,0 +1,128 @@
+!!!! begin xdefaults !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+!!!! begin xterm !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+xterm*geometry: 	80x25
+xterm*colorMode:	on
+
+xterm*colorBDMode:	on
+xterm*colorULMode: 	on
+xterm*boldMode: 	true
+xterm*underLine: 	on
+
+xterm*dynamicColors:		off
+xterm*highlightSelection:	true
+
+!xterm*background:	#141414
+!xterm*foreground:	#D4D2CF
+
+!# Scrolling on wheel mouse: half a page normally, line per line with shift
+XTerm.vt100.translations: #override\n\
+Shift<Btn4Down>,<Btn4Up>:scroll-back(1,line)\n\
+Shift<Btn5Down>,<Btn5Up>:scroll-forw(1,line)\n\
+Ctrl<Btn4Down>,<Btn4Up>:scroll-back(1,page)\n\
+Ctrl<Btn5Down>,<Btn5Up>:scroll-forw(1,page)\n\
+<Btn4Down>,<Btn4Up>:scroll-back(1,halfpage)\n\
+<Btn5Down>,<Btn5Up>:scroll-forw(1,halfpage)\n\
+
+!# In the scrollbar we map buttons 5 & 4 to 1 and 2 otherwise, core dump
+!# This will move proportionnaly to cursor position but we dont know how to
+!# program the same exact behavior as in the text widget.
+XTerm.vt100.Scrollbar.translations: #override\n\
+<Btn5Down>: StartScroll(Forward)\n\
+<Btn4Down>: StartScroll(Backward)\n\
+
+
+!!!! end xterm!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+!!!! begin urxvt !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+urxvt*geometry: 	80x25
+urxvt*colorMode:	on
+
+urxvt*colorBDMode:	on
+urxvt*colorULMode: 	on
+urxvt*boldMode: 	true
+urxvt*underLine: 	on
+
+urxvt*dynamicColors:		off
+urxvt*highlightSelection:	true
+
+urxvt*background:      #141414
+urxvt*scrollColor:	#141414
+urxvt*saveLines:	2000
+urxvt*scrollBar:	false
+urxvt*transparent:    true
+urxvt*blurRadius:	10
+urxvt*shading:	        10
+urxvt*fading:	        50
+urxvt*fadeColor:	#141414
+urxvt*scrollBar_floating:	true
+urxvt*borderColor:	#141414
+
+
+!!!! end urxvt !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+!!!! begin uxterm !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+uxterm*colorMode:	on
+
+uxterm*colorBDMode:	on
+uxterm*colorULMode: 	on
+uxterm*boldMode: 	true
+uxterm*underLine: 	on
+
+uxterm*dynamicColors:		off
+uxterm*highlightSelection:	true
+
+!!!! end uxterm !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+!!!! begin fonts !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!xterm*font: -*-fixed-medium-r-*-*-13-*-*-*-*-*-iso8859-*
+!xterm*font: -*-clean-medium-r-normal-*-13-*-75-75-c-60-iso8859-1
+
+xterm*font: -*-terminus-medium-*-*-*-12-*-*-*-*-*-iso8859-*
+urxvt*font: -*-terminus-medium-*-*-*-12-*-*-*-*-*-iso8859-*
+uxterm*font: -*-terminus-medium-*-*-*-12-*-*-*-*-*-iso8859-*
+
+!*faceName: dejavu sans mono
+!*faceSize: 8
+!!!! end fonts !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+!!!! begin colors !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+*background:		#201f1f
+*foreground:		#D4D2CF
+
+!colors
+!  black
+*color0:		#0A0A0A
+*color8:		#201F1F
+!  red
+*color1:		#A22618
+*color9:		#E84C24
+!  green
+*color2:		#539927
+*color10:		#70B751
+!  yellow
+*color3:		#8E6514
+*color11:		#B4A05A
+!  blue
+*color4:		#113050
+*color12:		#275fA0
+!  magenta
+*color5:		#543973
+*color13:		#84699B
+!  cyan
+*color6:		#4D92B4
+*color14:		#8BCAEA
+!  white
+*color7:		#A3A29F
+*color15:		#D4D2CF
+
+*colorBD:		#275FA0
+*colorUL:		#E84C24
+!!!! end colors !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+!!!! end .Xdefaults !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
