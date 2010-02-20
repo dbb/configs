@@ -1,0 +1,77 @@
+# colors
+eval "`dircolors -b`"
+alias ls="ls --color=auto"
+alias dir="dir --color=auto"
+alias vdir="vdir --color=auto"
+
+alias grep="grep --color=auto"
+alias fgrep="fgrep --color=auto"
+alias egrep="egrep --color=auto"
+
+# ls
+alias ll="ls -l"
+alias la="ls -A"
+alias l="ls -CF"
+
+# chmod 
+alias cx="chmod +x"
+
+# debian
+alias afs="apt-file search"
+alias aps="aptitude search"
+alias apsrc="apt-get source"
+alias apv="apt-cache policy"
+
+alias apgd="su -c \"aptitude update && aptitude safe-upgrade -y\""
+alias apud="su -c \"aptitude update\""
+alias update="su -c \"aptitude update\""
+alias apug="su -c \"aptitude safe-upgrade\""
+alias upgrade="su -c \"aptitude safe-upgrade\""
+
+
+
+alias quikdeb="/usr/bin/time -p dpkg-buildpackage -rfakeroot -us -uc"
+
+# cd shortcuts
+alias up="cd .."
+alias back="cd -"
+
+# files
+alias ob-as="vim $HOME/.config/openbox/autostart.sh"
+alias ob-rc="vim $HOME/.config/openbox/rc.xml"
+alias sz="source ~/.zshrc"
+alias vz="vim ~/.zshrc ; source ~/.zshrc"
+alias xdef="vim ~/.Xdefaults ; xrdb -load ~/.Xdefaults"
+
+# find
+alias fh="find . -maxdepth 1 -iname"
+alias fd="find . -iname"
+
+# grep
+alias igrep="egrep -in"
+
+# heredocs
+alias hdoc="cat << EOF >"
+
+# misc
+alias clear-hosts="rm -v ~/.ssh/known_hosts"
+alias kiw="kill $(pidof firefox-bin)"
+alias q="exit"
+alias :q="exit"
+
+# net
+alias pingr="ping -c 2 192.168.1.1"
+alias pingc="ping -c 2 comcast.net"
+alias pingv="ping -c 2 verizon.net"
+
+# octave
+alias oct="octave --silent"
+alias o="octave --silent --eval"
+
+# time
+alias sw="/usr/bin/time -f \"\n----\n\nElapsed time: %E\n\" cat"
+alias t="/usr/bin/time -p"
+
+# vim
+alias v="vim"
+

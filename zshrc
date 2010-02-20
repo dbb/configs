@@ -14,24 +14,7 @@ setopt list_packed
 setopt magic_equal_subst
 setopt nonomatch
 
-# variables
-export EDITOR=vim
-export HISTFILE=~/.zhistory
-export HISTSIZE=1000
-export PAGER=less
-export SAVEHIST=1000
 
-export WWW_HOME='file:///home/daniel/Documents/home.html'
-export MAIL=/var/spool/mail/daniel
-
-export PATH=$HOME/bin:$HOME/games/:"${PATH}"
-
-# make stuff
-export CFLAGS="-march=core2 -O3 -pipe"
-export CXXFLAGS="${CFLAGS}"
-export CONCURRENCY_LEVEL=2
-# must comment the following line before building kernel
-#export MAKEFLAGS="-j 2"
 
 # completion
 autoload -U compinit
@@ -135,59 +118,4 @@ setprompt () {
 
 setprompt
 
-# Color stuff
-eval "`dircolors -b`"
-alias ls='ls --color=auto'
-alias dir='dir --color=auto'
-alias vdir='vdir --color=auto'
-
-alias grep='grep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
-
-# some more ls aliases
-alias ll='ls -l'
-alias la='ls -A'
-alias l='ls -CF'
-
-# apt shortcuts
-alias afs='apt-file search'
-alias aps='aptitude search'
-alias apsrc='apt-get source'
-alias apv='apt-cache policy'
-alias apud='su -c "aptitude update"'
-alias update='su -c "aptitude update"'
-alias apug='su -c "aptitude safe-upgrade"'
-alias upgrade='su -c "aptitude safe-upgrade"'
-
-alias pingr='ping -c 2 192.168.1.1'
-alias pingc='ping -c 2 comcast.net'
-alias pingv='ping -c 2 verizon.net'
-
-alias quikdeb='time dpkg-buildpackage -rfakeroot -us -uc'
-
-# cd shortcuts
-alias up='cd ..'
-alias back='cd $OLDPWD'
-
-# file-editing shortcuts
-alias sz='source ~/.zshrc'
-alias vz='vim ~/.zshrc ; source ~/.zshrc'
-alias xdef='vim ~/.Xdefaults ; xrdb -load ~/.Xdefaults'
-
-# find shortcuts
-alias fh='find . -maxdepth 1 -iname'
-alias fd='find . -iname'
-
-# heredoc shortcut
-alias 'heredoc'='cat << EOF >'
-
-# misc
-alias clear-hosts='rm -v ~/.ssh/known_hosts'
-alias :q='exit'
-alias kiw='kill $(pidof firefox-bin)'
-
-# octave aliases
-alias oct='octave --silent'
-alias o='octave --silent --eval'
-
+source $HOME/.zaliases
