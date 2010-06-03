@@ -1,0 +1,4 @@
+# sagi - a find shortcut
+sagi () {
+    find "$1" -iname "*$2*"
+}

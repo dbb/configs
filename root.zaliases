@@ -1,0 +1,87 @@
+# safety net
+alias rm="rm -i"
+alias cp="cp -i"
+alias mv="mv -i"
+
+# cd shortcuts
+alias back="cd -"
+alias cdd="cd /home/daniel"
+alias cdm="cd /mnt/media_files"
+alias up="cd .."
+
+
+# apt shortcuts
+alias apc="aptitude autoclean"
+alias apdep="aptitude build-dep -P"
+alias apdg="aptitude update && aptitude safe-upgrade"
+alias apin="aptitude install -P"
+alias aprm="aptitude remove -P"
+alias aps="aptitude search"
+alias apud="aptitude update"
+alias apug="aptitude safe-upgrade"
+alias apv="apt-cache policy"
+alias sidstall="aptitude install -t unstable -P"
+
+alias clear-db="dpkg --clear-avail"
+
+alias sources="vim /etc/apt/sources.list"
+
+alias update="aptitude update"
+alias upgrade="aptitude safe-upgrade -P"
+
+alias di="dpkg -i"
+
+# misc
+alias :q="exit"
+
+# Networking aliases
+alias pingr="ping -c 2 192.168.1.1"
+alias pingv="ping -c 2 verizon.net"
+alias pingc="ping -c 2 comcast.net"
+
+alias wifi-motown="iwconfig wlan0 mode managed channel 06 essid xximxxsadxx key ABCDEF1234"
+alias wifi-btown="iwconfig wlan0 mode managed channel 06 essid bolton key ABCDEF1234"
+
+alias wrs="ifdown wlan0 ; ifup wlan0"
+
+# For editing zsh files
+alias va="vim /root/.zaliases ; source /root/.zaliases"
+alias vz="vim /root/.zshrc ; source /root/.zshrc"
+alias sz="source /root/.zshrc"
+
+
+# for editing other system files
+alias apso="vim /etc/apt/sources.list"
+alias net-if="vim /etc/network/interfaces"
+
+alias xconf="vim /etc/X11/xorg.conf +92"
+
+# shutdown aliases
+alias srn="shutdown -r now"
+alias shn="shutdown -h now"
+
+# init.d stuff
+alias cups-on="/etc/init.d/cups start"
+alias cups-off="/etc/init.d/cups stop"
+alias cups-rc="/etc/init.d/cups restart"
+
+alias kdm-on="/etc/init.d/kdm start"
+alias kdm-off="/etc/init.d/kdm stop"
+alias kdm-rs="/etc/init.d/kdm restart"
+
+alias net-rs="/etc/init.d/networking restart"
+alias net-on="/etc/init.d/networking start"
+alias net-off="/etc/init.d/networking stop"
+
+alias ssh-on="/etc/init.d/ssh start"
+alias ssh-off="/etc/init.d/ssh stop"
+alias ssh-rc="/etc/init.d/ssh restart"
+export LS_OPTIONS='--color=auto'
+eval "`dircolors`"
+alias ls='ls $LS_OPTIONS'
+alias la='ls $LS_OPTIONS -a'
+alias ll='ls $LS_OPTIONS -l'
+alias l='ls $LS_OPTIONS -lA'
+alias grep='grep $LS_OPTIONS'
+alias egrep='egrep $LS_OPTIONS'
+alias fgrep='fgrep $LS_OPTIONS'
