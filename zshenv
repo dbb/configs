@@ -1,3 +1,7 @@
+#!/bin/bash
+                # NOTE: The shebang line exists only for syntax highlighting
+                # on GitHub!
+
 # debian
 export DEBEMAIL="danielbarrettbolton@gmail.com"
 export DEBFULLNAME="Daniel Bolton"

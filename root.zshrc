@@ -1,3 +1,7 @@
+#!/bin/bash
+                # NOTE: The shebang line exists only for syntax highlighting
+                # on GitHub!
+
 # number of lines kept in history
 export HISTSIZE=1000
 # number of lines saved in the history after logout
