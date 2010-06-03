@@ -1,3 +1,10 @@
+# applications
+alias n="fceux --xscale 3 --yscale 3"
+alias s="screen"
+alias v="vim"
+alias we="weechat-curses"
+alias x="startx"
+
 # colors
 eval "`dircolors -b`"
 alias ls="ls --color=auto"
@@ -7,6 +14,13 @@ alias vdir="vdir --color=auto"
 alias grep="grep --color=auto"
 alias fgrep="fgrep --color=auto"
 alias egrep="egrep --color=auto"
+
+# games
+alias ng1="mednafen $HOME/games/nes/Ninja_Gaiden_1.nes"
+alias ng2="mednafen $HOME/games/nes/Ninja_Gaiden_2.nes"
+alias ng3="mednafen $HOME/games/nes/Ninja_Gaiden_3.nes"
+
+alias sc="mednafen $HOME/games/nes/Super_C.nes"
 
 # ls
 alias ll="ls -l"
@@ -28,8 +42,6 @@ alias update="su -c \"aptitude update\""
 alias apug="su -c \"aptitude safe-upgrade\""
 alias upgrade="su -c \"aptitude safe-upgrade\""
 
-
-
 alias quikdeb="/usr/bin/time -p dpkg-buildpackage -rfakeroot -us -uc"
 
 # cd shortcuts
@@ -40,6 +52,7 @@ alias back="cd -"
 alias ob-as="vim $HOME/.config/openbox/autostart.sh"
 alias ob-rc="vim $HOME/.config/openbox/rc.xml"
 alias sz="source ~/.zshrc"
+alias va="vim ~/.zaliases ; source ~/.zaliases"
 alias vz="vim ~/.zshrc ; source ~/.zshrc"
 alias xdef="vim ~/.Xdefaults ; xrdb -load ~/.Xdefaults"
 
@@ -49,6 +62,7 @@ alias fd="find . -iname"
 
 # grep
 alias igrep="egrep -in"
+alias ngrep="egrep -in"
 
 # heredocs
 alias hdoc="cat << EOF >"
@@ -68,10 +82,27 @@ alias pingv="ping -c 2 verizon.net"
 alias oct="octave --silent"
 alias o="octave --silent --eval"
 
+# perl
+
+# ps
+alias pse="ps -e"
+
+# rm
+alias rf="rm -fr"
+
 # time
 alias sw="/usr/bin/time -f \"\n----\n\nElapsed time: %E\n\" cat"
 alias t="/usr/bin/time -p"
 
-# vim
-alias v="vim"
+# translation
+alias deen="tw translate.google.com.de-en"
+alias esen="tw translate.google.com.es-en"
+alias fren="tw translate.google.com.fr-en"
 
+alias ende="tw translate.google.com.en-de"
+alias enes="tw translate.google.com.en-es"
+alias enfr="tw translate.google.com.en-fr"
+
+# su
+alias suz="su -c 'zsh'"
+alias rz="su -c 'zsh'"

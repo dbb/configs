@@ -3,7 +3,7 @@
 umask 022
 
 # options
-bindkey -e
+bindkey -v
 setopt append_history
 setopt auto_list
 setopt extended_history
@@ -30,6 +30,65 @@ zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
 setopt complete_in_word
 bindkey "^X^I" expand-or-complete-prefix
 # bindkey "^X^H" expand-history
+
+# keys ######################################################################
+autoload zkbd
+function zkbd_file() {
+    [[ -f ~/.zkbd/${TERM}-${VENDOR}-${OSTYPE} ]] && printf '%s' ~/".zkbd/${TERM}-${VENDOR}-${OSTYPE}" && return 0
+    [[ -f ~/.zkbd/${TERM}-${DISPLAY}          ]] && printf '%s' ~/".zkbd/${TERM}-${DISPLAY}"          && return 0
+    return 1
+}
+
+[[ ! -d ~/.zkbd ]] && mkdir ~/.zkbd
+keyfile=$(zkbd_file)
+ret=$?
+if [[ ${ret} -ne 0 ]]; then
+    zkbd
+    keyfile=$(zkbd_file)
+    ret=$?
+fi
+if [[ ${ret} -eq 0 ]] ; then
+    source "${keyfile}"
+else
+    printf 'Failed to setup keys using zkbd.\n'
+fi
+unfunction zkbd_file; unset keyfile ret
+
+# setup key accordingly
+[[ -n "${key[Home]}"    ]]  && bindkey  "${key[Home]}"    beginning-of-line
+[[ -n "${key[End]}"     ]]  && bindkey  "${key[End]}"     end-of-line
+[[ -n "${key[Home]}"    ]]  && bindkey -M vicmd "${key[Home]}"    beginning-of-line
+[[ -n "${key[End]}"     ]]  && bindkey -M vicmd "${key[End]}"     end-of-line
+[[ -n "${key[Insert]}"  ]]  && bindkey  "${key[Insert]}"  overwrite-mode
+[[ -n "${key[Delete]}"  ]]  && bindkey  "${key[Delete]}"  delete-char
+[[ -n "${key[Up]}"      ]]  && bindkey  "${key[Up]}"      up-line-or-history
+[[ -n "${key[Down]}"    ]]  && bindkey  "${key[Down]}"    down-line-or-history
+[[ -n "${key[Left]}"    ]]  && bindkey  "${key[Left]}"    backward-char
+[[ -n "${key[Right]}"   ]]  && bindkey  "${key[Right]}"   forward-char
+
+bindkey -M vicmd "^R" redo
+bindkey -M vicmd "u" undo
+bindkey -M vicmd "ga" what-cursor-position
+
+
+
+#############################################################################
+
+chpwd () {
+    local -a files
+    files=( *(N) )
+    FILECOUNT="$#files"
+    if [[ "$FILECOUNT" -lt 10 ]]; then
+        FILEPROMPT="  ${FILECOUNT}L"
+    elif [[ "$FILECOUNT" -lt 100 ]]; then
+        FILEPROMPT=" ${FILECOUNT}L"
+    else
+        FILEPROMPT="${FILECOUNT}L"
+    fi
+}
+# call the above function to set $FILEPROMPT on login
+chpwd
+
 
 function precmd {
 
@@ -59,11 +118,7 @@ preexec () {
     fi
 }
 
-
-setprompt () {
-
-    setopt prompt_subst
-
+setcolors () {
     autoload colors zsh/terminfo
     if [[ "$terminfo[colors]" -ge 8 ]]; then
 	colors
@@ -74,7 +129,28 @@ setprompt () {
 	(( count = $count + 1 ))
     done
     PR_NO_COLOUR="%{$terminfo[sgr0]%}"
-    
+}
+
+setcolors
+
+# set $VIMODE to a default value ############################################
+VIMODE="$PR_RED-- INSERT --$PR_NO_COLOUR"
+function zle-keymap-select {
+	VIMODE="${${KEYMAP/main/$PR_RED-- INSERT --$PR_NO_COLOUR}/vicmd/$PR_LIGHT_WHITE   NORMAL   $PR_NO_COLOUR}"
+	zle reset-prompt
+}
+zle -N zle-keymap-select
+
+function zle-cursor {
+    CURSNUM=${CURSOR}
+    zle reset-prompt
+}
+zle -N zle-cursor
+
+setprompt () {
+
+    setopt prompt_subst
+
     typeset -A altchar
     set -A altchar ${(s..)terminfo[acsc]}
     PR_SET_CHARSET="%{$terminfo[enacs]%}"
@@ -94,10 +170,11 @@ setprompt () {
 	    PR_TITLEBAR=$'%{\e_screen \005 (\005t) | %(!.-=[ROOT]=- | .)%n@%m:%~ | ${COLUMNS}x${LINES} | %y\e\\%}'
 	    ;;
 	rxvt-unicode*)
-	    PR_TITLEBAR=$'%{\e]0;%(!.-=*[ROOT]*=- | .)%n@%m:%~ | ${COLUMNS}x${LINES} | %y\a%}'
+	    PR_TITLEBAR='poopoonuggets'
+	    #PR_TITLEBAR=$'%{\e]0;%(!.-=*[ROOT]*=- | .)%n@%m:%~ | ${COLUMNS}x${LINES} | %y\a%}'
 	    ;;
 	*)
-	    PR_TITLEBAR=''
+	    PR_TITLEBAR=$'%n@%m:%~'
 	    ;;
     esac
     
@@ -112,10 +189,19 @@ setprompt () {
 # older prompt, with blue user, red host, and yellow directory
 #     PROMPT='$PR_BLUE%n$PR_WHITE@$PR_RED%m$PR_WHITE:$PR_YELLOW%c$PR_WHITE%%$PR_NO_COLOUR '
 
-     PROMPT='${(e)PR_TITLEBAR}$PR_BLUE%n$PR_WHITE@$PR_RED%m$PR_WHITE:$PR_YELLOW%c$PR_WHITE%%$PR_NO_COLOUR '
+#PROMPT='${(e)PR_TITLEBAR}$PR_BLUE%n$PR_WHITE@$PR_RED%m$PR_WHITE:$PR_YELLOW%c$PR_WHITE%%$PR_NO_COLOUR '
 
+# vim-like prompt
+
+   PROMPT='
+"$PR_BLUE%~$PR_NO_COLOUR" $FILEPROMPT, %?
+$PR_LIGHT_YELLOW%h $VIMODE %#$PR_NO_COLOUR '
+
+    RPROMPT='%l, $PR_BLUE%n$PR_NO_COLOUR'
 }
-
 setprompt
 
 source $HOME/.zaliases
+source $HOME/.zshenv
+source /home/daniel/.zkbd/xterm-:0.0
+source "$HOME/.zfunctions"
