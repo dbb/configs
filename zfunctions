@@ -1,0 +1,55 @@
+# guitar pro 5
+gp5 () {
+    cd "/home/daniel/.wine/drive_c/Program Files/Guitar Pro 5"
+    wine "/home/daniel/.wine/drive_c/Program Files/Guitar Pro 5/GP5.exe"
+}
+
+# kernel building shortcut
+dbb-build () {
+    MAKEFLAGS=''
+    appendage="-dbb-deb"
+    revision=$(date +"%Y-%m-%d")
+
+    make-kpkg clean
+
+    time fakeroot make-kpkg --append-to-version "$appendage" --revision \
+        "$revision" --initrd kernel_image kernel_headers
+}
+
+# padawan's graph
+graph () {
+    cd "/home/daniel/.wine/drive_c/Program Files/Graph"
+    wine "/home/daniel/.wine/drive_c/Program Files/Graph/Graph.exe"
+}
+
+# make a PDF from a man page
+man2pdf () {
+    man -t $1 | ps2pdf - > $1.pd
+}
+
+# instantiate a perl document and open it for editing
+newpl () {
+    cp $HOME/Templates/perl ./$1
+    chmod +x ./$1
+    vim $1 +5
+}
+
+# ninja gaiden!
+ng () {
+    mednafen $HOME/games/nes/Ninja_Gaiden_$1.nes
+}
+
+# perl global substitution
+pgs () {
+    perl -i~ -p -e 's/$1/$2/g' $3
+}
+
+# sagi - a find shortcut
+sagi () {
+    find "$1" -iname "*$2*"
+}
+# vimprobable with tabs
+vpb () {
+    tabbed=$(tabbed -d); vimprobable2 -e $tabbed $*
+}
+
