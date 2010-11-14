@@ -1,29 +1,30 @@
-#!/bin/bash
-                # NOTE: The shebang line exists only for syntax highlighting
-                # on GitHub!
+# debian
+
 
 # guitar pro 5
 gp5 () {
-    cd "/home/daniel/.wine/drive_c/Program Files/Guitar Pro 5"
-    wine "/home/daniel/.wine/drive_c/Program Files/Guitar Pro 5/GP5.exe"
+    cd '/home/daniel/.wine/drive_c/Program Files/Guitar Pro 5'
+    wine 'GP5.exe' &
+    cd -
 }
 
 # kernel building shortcut
 dbb-build () {
     MAKEFLAGS=''
-    appendage="-dbb-deb"
-    revision=$(date +"%Y-%m-%d")
+    appendage='-dbb-deb'
+    revision=$(date +"%Y%m%d")
 
     make-kpkg clean
 
     time fakeroot make-kpkg --append-to-version "$appendage" --revision \
-        "$revision" --initrd kernel_image kernel_headers
+        "$revision" kernel_image kernel_headers
 }
 
 # padawan's graph
 graph () {
-    cd "/home/daniel/.wine/drive_c/Program Files/Graph"
-    wine "/home/daniel/.wine/drive_c/Program Files/Graph/Graph.exe"
+    cd '/home/daniel/.wine/drive_c/Program Files/Graph'
+    wine '/home/daniel/.wine/drive_c/Program Files/Graph/Graph.exe' &
+    cd -
 }
 
 # make a PDF from a man page
@@ -33,9 +34,9 @@ man2pdf () {
 
 # instantiate a perl document and open it for editing
 newpl () {
-    cp $HOME/Templates/perl ./$1
-    chmod +x ./$1
-    vim $1 +5
+    cp "$HOME/Templates/perl" "./$1"
+    chmod +x "./$1"
+    vim "$1" +5
 }
 
 # ninja gaiden!
@@ -44,16 +45,30 @@ ng () {
 }
 
 # perl global substitution
-pgs () {
-    perl -i~ -p -e 's/$1/$2/g' $3
+pgs() {
+    perl -i~ -pe "s/$1/$2/g" "$3"
 }
 
 # sagi - a find shortcut
-sagi () {
+sagi() {
     find "$1" -iname "*$2*"
 }
+
+# to - makes it easier to cd to a variable that contains a path, e.g.
+#   p="$HOME/some/long/ridiculous/path/name"
+#   to p
+to () {
+    eval dir=\$$1; cd "$dir";
+}
+
 # vimprobable with tabs
 vpb () {
     tabbed=$(tabbed -d); vimprobable2 -e $tabbed $*
 }
+quickfind () { find . -maxdepth 2 -iname "*$1*" }
 
+# zsh calculator
+zc() {
+    string='print $(( '"$argc"' ))'
+    eval "$string"
+}

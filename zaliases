@@ -1,23 +1,20 @@
-#!/bin/bash
-                # NOTE: The shebang line exists only for syntax highlighting
-                # on GitHub!
-
 # applications
-alias n="fceux --xscale 3 --yscale 3"
-alias s="screen"
-alias v="vim"
-alias we="weechat-curses"
-alias x="startx"
+alias jd='java -jar /home/daniel/downloads/JDownloader/JDownloader.jar'
+alias n='fceux --xscale 3 --yscale 3'
+alias s='screen'
+alias v='vim'
+alias we='weechat-curses'
+alias x='startx'
 
 # colors
 eval "`dircolors -b`"
-alias ls="ls --color=auto"
-alias dir="dir --color=auto"
-alias vdir="vdir --color=auto"
+alias ls='ls --color=auto'
+alias dir='dir --color=auto'
+alias vdir='vdir --color=auto'
 
-alias grep="grep --color=auto"
-alias fgrep="fgrep --color=auto"
-alias egrep="egrep --color=auto"
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
 
 # games
 alias ng1="mednafen $HOME/games/nes/Ninja_Gaiden_1.nes"
@@ -27,49 +24,54 @@ alias ng3="mednafen $HOME/games/nes/Ninja_Gaiden_3.nes"
 alias sc="mednafen $HOME/games/nes/Super_C.nes"
 
 # ls
-alias ll="ls -l"
-alias la="ls -A"
-alias l="ls -CF"
+alias ll='ls -l'
+alias la='ls -A'
+alias l='ls -CF'
 
 # chmod 
-alias cx="chmod +x"
+alias cx='chmod +x'
 
 # debian
-alias afs="apt-file search"
-alias aps="aptitude search"
-alias apsrc="apt-get source"
-alias apv="apt-cache policy"
+alias afs='apt-file search'
+alias aps='aptitude search'
+alias apsrc='apt-get source'
+alias apv='apt-cache policy'
 
-alias apgd="su -c \"aptitude update && aptitude safe-upgrade -y\""
-alias apud="su -c \"aptitude update\""
-alias update="su -c \"aptitude update\""
-alias apug="su -c \"aptitude safe-upgrade\""
-alias upgrade="su -c \"aptitude safe-upgrade\""
+alias apdg='su -c "aptitude update && aptitude safe-upgrade"'
+alias apud='su -c "aptitude update"'
+alias apug='su -c "aptitude safe-upgrade"'
+alias update='su -c "aptitude update"'
+alias upgrade='su -c "aptitude safe-upgrade"'
 
-alias quikdeb="/usr/bin/time -p dpkg-buildpackage -rfakeroot -us -uc"
+alias di='su -c "dpkg -i ./*.deb"'
+
+alias quikdeb='/usr/bin/time -p dpkg-buildpackage -rfakeroot -us -uc'
 
 # cd shortcuts
-alias up="cd .."
-alias back="cd -"
+alias up='cd ..'
+alias back='cd -'
 
 # files
 alias ob-as="vim $HOME/.config/openbox/autostart.sh"
 alias ob-rc="vim $HOME/.config/openbox/rc.xml"
-alias sz="source ~/.zshrc"
-alias va="vim ~/.zaliases ; source ~/.zaliases"
-alias vz="vim ~/.zshrc ; source ~/.zshrc"
-alias xdef="vim ~/.Xdefaults ; xrdb -load ~/.Xdefaults"
+alias sz="source $HOME/.zshrc"
+alias va="vim $HOME/.zaliases ; source $HOME/.zaliases"
+alias vz="vim $HOME/.zshrc ; source $HOME/.zshrc"
+alias xdef="vim $HOME/.Xdefaults ; xrdb -load $HOME/.Xdefaults"
 
 # find
-alias fh="find . -maxdepth 1 -iname"
-alias fd="find . -iname"
+alias fh='find . -maxdepth 1 -iname'
+alias fd='find . -iname'
 
 # grep
-alias igrep="egrep -in"
-alias ngrep="egrep -in"
+alias igrep='egrep -in'
+alias ngrep='egrep -in'
 
 # heredocs
-alias hdoc="cat << EOF >"
+alias hdoc='cat << EOF >'
+
+# make
+alias mi='su -c "make install"'
 
 # misc
 alias clear-hosts="rm -v ~/.ssh/known_hosts"
@@ -78,35 +80,40 @@ alias q="exit"
 alias :q="exit"
 
 # net
-alias pingr="ping -c 2 192.168.1.1"
-alias pingc="ping -c 2 comcast.net"
-alias pingv="ping -c 2 verizon.net"
+alias png='ping -c2'
+alias pingr='ping -c 2 192.168.1.1'
+alias pingc='ping -c 2 comcast.net'
+alias pingv='ping -c 2 verizon.net'
+
+alias sr='ssh reddevil'
 
 # octave
-alias oct="octave --silent"
-alias o="octave --silent --eval"
+alias oct='octave --silent'
+alias o='octave --silent --eval'
 
 # perl
 
 # ps
-alias pse="ps -e"
+alias pse='ps -e'
+
+# ROOT OPERATIONS ###############################
+alias shn='su -c "shutdown -h now"'
+alias srn='su -c "shutdown -r now"'
+alias wrs='su -c "ifdown wlan0 && ifup wlan0"'
 
 # rm
-alias rf="rm -fr"
+alias rf='rm -fr'
 
 # time
-alias sw="/usr/bin/time -f \"\n----\n\nElapsed time: %E\n\" cat"
-alias t="/usr/bin/time -p"
+alias sw='/usr/bin/time -f "\n----\n\nElapsed time: %E\n" cat'
+alias t='/usr/bin/time -p'
 
 # translation
-alias deen="tw translate.google.com.de-en"
-alias esen="tw translate.google.com.es-en"
-alias fren="tw translate.google.com.fr-en"
+alias deen='tw translate.google.com.de-en'
+alias esen='tw translate.google.com.es-en'
+alias fren='tw translate.google.com.fr-en'
 
-alias ende="tw translate.google.com.en-de"
-alias enes="tw translate.google.com.en-es"
-alias enfr="tw translate.google.com.en-fr"
+alias ende='tw translate.google.com.en-de'
+alias enes='tw translate.google.com.en-es'
+alias enfr='tw translate.google.com.en-fr'
 
-# su
-alias suz="su -c 'zsh'"
-alias rz="su -c 'zsh'"

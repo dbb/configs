@@ -1,7 +1,3 @@
-#!/bin/bash
-                # NOTE: The shebang line exists only for syntax highlighting
-                # on GitHub!
-
 # dbbolton's zshrc
 
 umask 022
@@ -32,8 +28,6 @@ zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
 # setopt correctall
 
 setopt complete_in_word
-bindkey "^X^I" expand-or-complete-prefix
-# bindkey "^X^H" expand-history
 
 # keys ######################################################################
 autoload zkbd
@@ -70,10 +64,18 @@ unfunction zkbd_file; unset keyfile ret
 [[ -n "${key[Left]}"    ]]  && bindkey  "${key[Left]}"    backward-char
 [[ -n "${key[Right]}"   ]]  && bindkey  "${key[Right]}"   forward-char
 
-bindkey -M vicmd "^R" redo
-bindkey -M vicmd "u" undo
-bindkey -M vicmd "ga" what-cursor-position
+[[ -n "${key[PageUp]}"   ]]  && bindkey  "${key[PageUp]}"   history-search-backward
+[[ -n "${key[PageDown]}"   ]]  && bindkey  "${key[PageDown]}"   history-search-forward
 
+bindkey -M vicmd '^R' redo
+bindkey -M vicmd 'u'  undo
+bindkey -M vicmd 'ga' what-cursor-position
+bindkey -M vicmd 'q'  push-line
+
+bindkey '^xp' history-beginning-search-forward
+bindkey '^xn' history-beginning-search-backward
+bindkey '^X^I' expand-or-complete-prefix
+bindkey '^X^H' expand-history
 
 
 #############################################################################
@@ -82,15 +84,8 @@ chpwd () {
     local -a files
     files=( *(N) )
     FILECOUNT="$#files"
-    if [[ "$FILECOUNT" -lt 10 ]]; then
-        FILEPROMPT="  ${FILECOUNT}L"
-    elif [[ "$FILECOUNT" -lt 100 ]]; then
-        FILEPROMPT=" ${FILECOUNT}L"
-    else
-        FILEPROMPT="${FILECOUNT}L"
-    fi
 }
-# call the above function to set $FILEPROMPT on login
+# call the above function to set $FILECOUNT on login
 chpwd
 
 
@@ -104,13 +99,22 @@ function precmd {
     
     local promptsize=${#${(%):---(%n@%m:%l)---()--}}
     local pwdsize=${#${(%):-%~}}
+    local filesize=${#${(%):-$FILECOUNT}}
     
     if [[ "$promptsize + $pwdsize" -gt $TERMWIDTH ]]; then
 	    ((PR_PWDLEN=$TERMWIDTH - $promptsize))
     else
-	PR_FILLBAR="\${(l.(($TERMWIDTH - ($promptsize + $pwdsize)))..${PR_HBAR}.)}"
+	PR_FILLBAR="\${(l.(($TERMWIDTH - ($promptsize + $pwdsize + $filesize + 5)))..${PR_HBAR}.)}"
     fi
 
+    # note: the 5 is for extra characters added: two double-quotes, a comma,
+    # a space, and an L
+
+    # battery info
+    if which acpi > /dev/null; then
+        #PR_ACPI=`acpi -b | awk '{print $4}'`
+        PR_ACPI=`acpi -b | perl -ne 'print $1 if /(\d+)%/;'`
+    fi
 }
 
 
@@ -127,20 +131,22 @@ setcolors () {
     if [[ "$terminfo[colors]" -ge 8 ]]; then
 	colors
     fi
-    for color in RED GREEN YELLOW BLUE MAGENTA CYAN WHITE; do
+    for color in RED GREEN YELLOW BLUE MAGENTA CYAN WHITE BLACK; do
 	eval PR_$color='%{$terminfo[bold]$fg[${(L)color}]%}'
 	eval PR_LIGHT_$color='%{$fg[${(L)color}]%}'
 	(( count = $count + 1 ))
     done
-    PR_NO_COLOUR="%{$terminfo[sgr0]%}"
+    PR_NO_COLOR="%{$terminfo[sgr0]%}"
 }
 
 setcolors
 
 # set $VIMODE to a default value ############################################
-VIMODE="$PR_RED-- INSERT --$PR_NO_COLOUR"
+#VIMODE="$PR_RED-- INSERT --$PR_NO_COLOR"
+VIMODE='I'
 function zle-keymap-select {
-	VIMODE="${${KEYMAP/main/$PR_RED-- INSERT --$PR_NO_COLOUR}/vicmd/$PR_LIGHT_WHITE   NORMAL   $PR_NO_COLOUR}"
+#	VIMODE="${${KEYMAP/main/$PR_RED-- INSERT --$PR_NO_COLOR}/vicmd/$PR_LIGHT_WHITE   NORMAL   $PR_NO_COLOR}"
+	VIMODE="${${KEYMAP/main/I}/vicmd/N}"
 	zle reset-prompt
 }
 zle -N zle-keymap-select
@@ -153,8 +159,7 @@ zle -N zle-cursor
 
 setprompt () {
 
-    setopt prompt_subst
-
+    # box-drawing characters
     typeset -A altchar
     set -A altchar ${(s..)terminfo[acsc]}
     PR_SET_CHARSET="%{$terminfo[enacs]%}"
@@ -166,6 +171,11 @@ setprompt () {
     PR_LRCORNER=${altchar[j]:--}
     PR_URCORNER=${altchar[k]:--}
 
+
+
+
+    setopt prompt_subst
+
     case $TERM in
 	xterm*)
 	    PR_TITLEBAR=$'%{\e]0;%(!.-=*[ROOT]*=- | .)%n@%m:%~ | ${COLUMNS}x${LINES} | %y\a%}'
@@ -174,8 +184,7 @@ setprompt () {
 	    PR_TITLEBAR=$'%{\e_screen \005 (\005t) | %(!.-=[ROOT]=- | .)%n@%m:%~ | ${COLUMNS}x${LINES} | %y\e\\%}'
 	    ;;
 	rxvt-unicode*)
-	    PR_TITLEBAR='poopoonuggets'
-	    #PR_TITLEBAR=$'%{\e]0;%(!.-=*[ROOT]*=- | .)%n@%m:%~ | ${COLUMNS}x${LINES} | %y\a%}'
+	    PR_TITLEBAR=$'%{\e]0;%(!.-=*[ROOT]*=- | .)%n@%m:%~ | ${COLUMNS}x${LINES} | %y\a%}'
 	    ;;
 	*)
 	    PR_TITLEBAR=$'%n@%m:%~'
@@ -189,20 +198,70 @@ setprompt () {
     fi
 
 # a smaller prompt
-#   PROMPT='--- $PR_RED%c$PR_BLUE %%$PR_NO_COLOUR '
-# older prompt, with blue user, red host, and yellow directory
-#     PROMPT='$PR_BLUE%n$PR_WHITE@$PR_RED%m$PR_WHITE:$PR_YELLOW%c$PR_WHITE%%$PR_NO_COLOUR '
+#   PROMPT='--- $PR_RED%c$PR_BLUE %%$PR_NO_COLOR '
 
-#PROMPT='${(e)PR_TITLEBAR}$PR_BLUE%n$PR_WHITE@$PR_RED%m$PR_WHITE:$PR_YELLOW%c$PR_WHITE%%$PR_NO_COLOUR '
+# older prompt, with blue user, red host, and yellow directory
+#     PROMPT='$PR_BLUE%n$PR_WHITE@$PR_RED%m$PR_WHITE:$PR_YELLOW%c$PR_WHITE%%$PR_NO_COLOR '
+
+#PROMPT='${(e)PR_TITLEBAR}$PR_BLUE%n$PR_WHITE@$PR_RED%m$PR_WHITE:$PR_YELLOW%c$PR_WHITE%%$PR_NO_COLOR '
 
 # vim-like prompt
 
-   PROMPT='
-"$PR_BLUE%~$PR_NO_COLOUR" $FILEPROMPT, %?
-$PR_LIGHT_YELLOW%h $VIMODE %#$PR_NO_COLOUR '
+#   PROMPT='
+#╔═ "${PR_BLUE}%~${PR_NO_COLOR}" ${FILECOUNT}, %? ${PR_BLUE}%n${PR_NO_COLOR}@${PR_RED}%M${PR_NO_COLOR} 
+#╚═ ${PR_LIGHT_YELLOW}%h ${VIMODE} %#${PR_NO_COLOR} '
+#
+#    RPROMPT='%l, ${PR_RED}%@${PR_NO_COLOR}'
 
-    RPROMPT='%l, $PR_BLUE%n$PR_NO_COLOUR'
+#if [ $TERM == 'rxvt-unicode' ] ; then ########################################
+
+  # PROMPT='
+#╔═ "${PR_BLUE}%~${PR_NO_COLOR}" ${FILECOUNT}, %? ${PR_BLUE}%n${PR_NO_COLOR}@${PR_RED}%M${PR_NO_COLOR}$PR_HBAR${(e)PR_FILLBAR}
+#╚═ ${PR_LIGHT_YELLOW}%h ${VIMODE} %#${PR_NO_COLOR} '
+
+#    RPROMPT='%l, ${PR_RED}%@${PR_NO_COLOR}'
+
+
+if [ $TERM == 'linux' ] ; then
+    PROMPT='$PR_BLUE%n$PR_WHITE@$PR_RED%m$PR_WHITE:$PR_YELLOW%c$PR_WHITE%%$PR_NO_COLOR '
+    RPROMPT='tty%l,%?? ${PR_RED}%D{%l:%M:%S %p}${PR_NO_COLOR}'
+
+else
+    PROMPT='
+$PR_SET_CHARSET$PR_STITLE${(e)PR_TITLEBAR}\
+$PR_BLACK$PR_SHIFT_IN$PR_ULCORNER$PR_BLACK$PR_HBAR$PR_SHIFT_OUT(\
+${PR_BLUE}%n${PR_NO_COLOR}@$PR_RED%m${PR_NO_COLOR}:%l\
+$PR_BLACK)$PR_SHIFT_IN$PR_HBAR$PR_BLACK$PR_HBAR${(e)PR_FILLBAR}$PR_BLACK$PR_HBAR$PR_SHIFT_OUT(\
+$PR_MAGENTA%$PR_PWDLEN<...<"%~"${PR_NO_COLOR}, ${PR_CYAN}${FILECOUNT}L%<<\
+$PR_BLACK)$PR_SHIFT_IN$PR_HBAR$PR_BLACK$PR_URCORNER$PR_SHIFT_OUT\
+
+$PR_BLACK$PR_SHIFT_IN$PR_LLCORNER$PR_BLACK$PR_HBAR$PR_SHIFT_OUT(\
+%(?..$PR_LIGHT_RED%?$PR_BLACK:)\
+${PR_YELLOW}%h${PR_BLACK} | ${PR_NO_COLOR}VI:${PR_YELLOW}${VIMODE}\
+$PR_LIGHT_BLACK%(!.$PR_RED.$PR_WHITE)$PR_BLACK)$PR_SHIFT_IN$PR_HBAR$PR_SHIFT_OUT\
+$PR_BLACK$PR_SHIFT_IN$PR_HBAR$PR_SHIFT_OUT\
+$PR_NO_COLOR%# '
+
+    RPROMPT=' $PR_BLACK$PR_SHIFT_IN$PR_BLACK$PR_SHIFT_OUT\
+(${PR_GREEN}${PR_ACPI}%%${PR_NO_COLOR},${PR_RED}%D{%l:%M%p}$PR_BLACK)$PR_SHIFT_IN$PR_HBAR$PR_BLACK$PR_LRCORNER$PR_SHIFT_OUT$PR_NO_COLOR'
+
+    PS2='$PR_BLACK$PR_SHIFT_IN$PR_HBAR$PR_SHIFT_OUT\
+$PR_BLACK$PR_SHIFT_IN$PR_HBAR$PR_SHIFT_OUT(\
+$PR_LIGHT_GREEN%_$PR_BLACK)$PR_SHIFT_IN$PR_HBAR$PR_SHIFT_OUT\
+$PR_BLACK$PR_SHIFT_IN$PR_HBAR$PR_SHIFT_OUT$PR_NO_COLOR '
+
+fi
+    #######################################################################
+
+#
+#else
+#    PROMPT='%% '
+#    RPROMPT=''
+#fi
+
 }
+
+
 setprompt
 
 source $HOME/.zaliases

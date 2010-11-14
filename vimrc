@@ -15,14 +15,28 @@ set backspace=eol,start,indent
 " keep x commands/search patterns
 set history=20
 
-set hlsearch " highlight search results
+"set hlsearch " highlight search results
+
+set mouse=a " mouse support"
+
+" show line numbers relative to current line
+"set relativenumber
+set number
+
+" create .un~ file
+set undofile
 
 
-set number " show line numbers
-
-set ruler " show line and column of cursor
 " ruler with clock
 " set rulerformat=%55(%{strftime('%a\ %b\ %e\ %I:%M\ %p')}\ %5l,%-6(%c%V%)\ %P%)
+
+" status bar etc ------------------------------------------------------------
+set ruler       " show line and column of cursor
+set showcmd
+set showmode
+set ls=2        " always show status bar
+"set statusline=\ %F%m%r%h\ %w\ \ CWD:\ %r%{CurDir()}%h\ \ \ Line:\ %l/%L:%c
+set statusline=%<%1*===\ %5*%f%1*%(\ ===\ %4*%h%1*%)%(\ ===\ %4*%m%1*%)%(\ ===\ %4*%r%1*%)\ ===%====\ %2*%b(0x%B)%1*\ ===\ %3*%l,%c%V%1*\ ===\ %5*%P%1*\ ===%0*
 
 set showcmd " show partially entered commands
 set showmode " display INSERT when in i mode
@@ -30,24 +44,40 @@ set whichwrap=h,l,~,[,],<,>
 set wildmode=list:longest,full
 set wrap
 
-filetype on
+" allow pasting in the console
+"set paste
+
 syntax on
 
-filetype plugin on
-filetype indent on
 
+" force a file's syntax highlighting type
 au BufNewFile,BufRead .vimperatorrc setf vim
 
 
-" extra bindings
+" extra bindings ------------------------------------------------------------
 let mapleader = ","
 let g:mapleader = ","
 
-nmap <leader>w :w!<cr>
+nmap <leader>a A 
+nmap <leader>c I#<Esc>
+nmap <leader>d :close<CR>
+nmap <leader>e :colo 
+nmap <leader>r @:
+nmap <leader>s ddpk
+nmap <leader>v "+gP<CR>
+nmap <leader>w :w!<CR>
 
-map <leader>e :e! ~/.vimrc<cr>
+nmap <leader>$ f$li
+nmap <leader>@ f@li
+
+nmap <leader># i#!/usr/bin/env perl<CR>use strict;
+    \<CR>use warnings;<CR><esc>:set filetype=perl<ENTER>i<CR>
+
+" maps that override default commands
+nmap t :tabnew 
+"map <leader>e :e! ~/.vimrc<cr>
 autocmd! bufwritepost vimrc source ~/.vimrc
-
+" ---------------------------------------------------------------------------
 
 " tabs
 set expandtab
@@ -69,19 +99,27 @@ map <C-h> <C-W>h
 map <C-l> <C-W>l
 
 
-" Format the statusline
-set statusline=\ %F%m%r%h\ %w\ \ CWD:\ %r%{CurDir()}%h\ \ \ Line:\ %l/%L:%c
-
 function! CurDir()
     let curdir = substitute(getcwd(), '/home/daniel/', "~/", "g")
     return curdir
 endfunction
 
-" gvim stuff
-if has("gui_running")
-    set lines=31 columns=83
-    colors mustang
+colorscheme lucius88
+
+" pthogen
+filetype off
+call pathogen#runtime_append_all_bundles()
+call pathogen#helptags()
+
+" turn filetype back on
+filetype on
+filetype plugin on
+filetype indent on
+
+" custom function
+function DarkDefault()
+    colo default
     set background=dark
-    set guioptions-=T
-    set showtabline=2
-endif
+    hi Normal guibg=black guifg=white
+endfunction
+

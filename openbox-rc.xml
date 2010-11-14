@@ -36,7 +36,7 @@
        the active window is -->
   </placement>
   <theme>
-    <name>Obsidian</name>
+    <name>Simple-Nodec</name>
     <titleLayout>NLIMC</titleLayout>
     <!--
       available characters are NDSLIMC, each can occur at most once.
@@ -70,7 +70,7 @@
     </font>
     <font place="MenuHeader">
       <name>Terminus</name>
-      <size>8</size>
+      <size>9</size>
       <!-- font size in points -->
       <weight>Normal</weight>
       <!-- 'bold' or 'normal' -->
@@ -79,7 +79,7 @@
     </font>
     <font place="MenuItem">
       <name>Terminus</name>
-      <size>8</size>
+      <size>9</size>
       <!-- font size in points -->
       <weight>Normal</weight>
       <!-- 'bold' or 'normal' -->
@@ -105,13 +105,11 @@
 
        use obconf if you want to change these without having to log out
        and back in -->
-    <number>4</number>
+    <number>2</number>
     <firstdesk>1</firstdesk>
     <names>
       <name>1</name>
       <name>2</name>
-      <name>3</name>
-      <name>4</name>
     </names>
     <popupTime>875</popupTime>
     <!-- The number of milliseconds to show the popup for when switching
@@ -120,7 +118,7 @@
   <resize>
     <drawContents>no</drawContents>
     <popupShow>Always</popupShow>
-    <!-- 'Always', 'Never', or 'Nonpixel' (xterms and such) -->
+    <!-- 'Always', 'Never', or 'Nonpixel' (uxterms and such) -->
     <popupPosition>Fixed</popupPosition>
     <!-- 'Center', 'Top', or 'Fixed' -->
     <popupFixedPosition>
@@ -139,7 +137,7 @@
      cases. -->
   <margins>
     <top>0</top>
-    <bottom>26</bottom>
+    <bottom>0</bottom>
     <left>0</left>
     <right>0</right>
   </margins>
@@ -248,8 +246,8 @@
       <!-- show desktop -->
       <action name="ToggleShowDesktop"/>
     </keybind>
-    <!-- Keybindings for windows -->
-    <keybind key="W-S-x">
+    <!-- Keybindings for windows ======================================= -->
+    <keybind key="W-d">
       <!-- close window -->
       <action name="Close"/>
     </keybind>
@@ -301,7 +299,7 @@
         <desktop>yes</desktop>
       </action>
     </keybind>
-    <!-- Keybindings for running applications =========================== -->
+    <!-- Keybindings for running applications ========================== -->
     <keybind key="W-Return">
       <!-- terminal -->
       <action name="Execute">
@@ -314,81 +312,94 @@
         <execute>gmrun</execute>
       </action>
     </keybind>
-    <keybind key="Print">
+    <keybind key="W-Print">
       <!-- screenshot  -->
       <action name="Execute">
         <execute>ksnapshot</execute>
       </action>
     </keybind>
-    <keybind key="W-A-f">
-      <!-- file manager -->
-      <action name="Execute">
-        <command>thunar</command>
-      </action>
+    <!-- Chain begin -->
+    <keybind key="W-g">
+      <keybind key="h">
+        <!-- file manager -->
+        <action name="Execute">
+          <command>thunar</command>
+        </action>
+      </keybind>
+      <keybind key="k">
+        <action name="Execute">
+          <command>thunar /home/daniel/Desktop</command>
+        </action>
+      </keybind>
+      <keybind key="n">
+        <action name="Execute">
+          <command>konqueror</command>
+        </action>
+      </keybind>
+      <keybind key="w">
+        <action name="Execute">
+          <command>thunar /home/daniel/downloads</command>
+        </action>
+      </keybind>
+      <keybind key="c">
+        <action name="Execute">
+          <command>thunar /home/daniel/Documents</command>
+        </action>
+      </keybind>
+      <keybind key="b">
+        <!-- browser -->
+        <action name="Execute">
+          <execute>iceweasel</execute>
+        </action>
+      </keybind>
+      <keybind key="e">
+        <!-- editor -->
+        <action name="Execute">
+          <execute>gvim</execute>
+        </action>
+      </keybind>
+      <keybind key="p">
+        <!-- pidgin -->
+        <action name="Execute">
+          <execute>pidgin</execute>
+        </action>
+      </keybind>
+      <keybind key="q">
+        <!-- quodlibet -->
+        <action name="Execute">
+          <execute>quodlibet</execute>
+        </action>
+      </keybind>
     </keybind>
-    <keybind key="W-g-d">
-      <action name="Execute">
-        <command>thunar /home/daniel/Desktop</command>
-      </action>
-    </keybind>
-    <keybind key="W-g-w">
-      <action name="Execute">
-        <command>thunar /home/daniel/downloads</command>
-      </action>
-    </keybind>
-    <keybind key="W-g-c">
-      <action name="Execute">
-        <command>thunar /home/daniel/Documents</command>
-      </action>
-    </keybind>
-    <keybind key="W-A-b">
-      <!-- browser -->
-      <action name="Execute">
-        <execute>iceweasel</execute>
-      </action>
-    </keybind>
-    <keybind key="W-A-e">
-      <!-- editor -->
-      <action name="Execute">
-        <execute>kate</execute>
-      </action>
-    </keybind>
-    <keybind key="W-A-p">
-      <!-- pidgin -->
-      <action name="Execute">
-        <execute>pidgin</execute>
-      </action>
-    </keybind>
-    <keybind key="W-A-q">
-      <!-- quodlibet -->
-      <action name="Execute">
-        <execute>quodlibet</execute>
-      </action>
-    </keybind>
+    <!-- Chain end -->
     <!-- Openbox control keybindings ==================================== -->
-    <keybind key="W-S-c">
-      <!-- reconfigure -->
-      <action name="Reconfigure"/>
+    <!-- Chain begin -->
+    <keybind key="W-c">
+      <keybind key="c">
+        <!-- reconfigure -->
+        <action name="Reconfigure"/>
+      </keybind>
+      <keybind key="q">
+        <!-- exit -->
+        <action name="Exit">
+          <prompt>yes</prompt>
+        </action>
+      </keybind>
+      <keybind key="r">
+        <!-- restart -->
+        <action name="Restart">
+          <prompt>yes</prompt>
+        </action>
+      </keybind>
     </keybind>
-    <keybind key="W-S-q">
-      <!-- exit -->
-      <action name="Exit">
-        <prompt>yes</prompt>
-      </action>
-    </keybind>
-    <keybind key="W-S-r">
-      <!-- restart -->
-      <action name="Restart">
-        <prompt>yes</prompt>
-      </action>
-    </keybind>
+    <!-- Chain end -->
     <keybind key="W-v">
       <!-- root menu -->
       <action name="ShowMenu">
         <menu>root-menu</menu>
       </action>
     </keybind>
-    <keybind key="W-c">
+    <keybind key="W-l">
       <!-- client list menu -->
       <action name="ShowMenu">
         <menu>client-list-combined-menu</menu>
@@ -834,25 +845,24 @@
     <application class="*">
       <decor>no</decor>
     </application>
-    <application class="XTerm">
+    <application class="UXTerm">
       <decor>no</decor>
       <position>
         <x>0</x>
-        <y>468</y>
+        <y>438</y>
       </position>
     </application>
     <application class="URxvt">
       <decor>no</decor>
       <position>
         <x>0</x>
-        <y>468</y>
+        <y>420</y>
       </position>
     </application>
     <application name="Quodlibet">
       <skip_taskbar>yes</skip_taskbar>
     </application>
     <application class="Gmrun">
-      <!-- gmrun  -->
       <layer>above</layer>
       <position>
         <x>0</x>
@@ -860,32 +870,29 @@
       </position>
     </application>
     <application class="Kate">
-      <!-- kate  -->
       <position>
         <x>245</x>
         <y>-0</y>
       </position>
     </application>
     <application class="Kmix">
-      <!-- kmix  -->
       <position>
-        <x>-0</x>
-        <y>-0</y>
+        <x>854</x>
+        <y>419</y>
       </position>
     </application>
-    <application class="Konversation">
-      <!-- konversation  -->
+    <application name="HDA Intel">
       <position>
-        <x>450</x>
-        <y>-0</y>
+        <x>854</x>
+        <y>419</y>
       </position>
     </application>
     <application name="*" role="buddy_list">
       <!-- pidgin buddylist  -->
       <skip_taskbar>yes</skip_taskbar>
       <position>
-        <x>-0</x>
-        <y>-0</y>
+        <x>1032</x>
+        <y>206</y>
       </position>
     </application>
     <application name="*" role="conversation">
@@ -901,11 +908,28 @@
         <y>-0</y>
       </position>
     </application>
-    <application class="Uzbl*">
-      <!-- uzbl  -->
+    <application class="Konqueror">
       <position>
         <x>center</x>
         <y>-0</y>
+      </position>
+    </application>
+    <application class="Iceweasel">
+      <position>
+        <x>center</x>
+        <y>-0</y>
+      </position>
+    </application>
+    <application class="Gvim">
+      <position>
+        <x>center</x>
+        <y>-0</y>
+      </position>
+    </application>
+    <application class="Konsole">
+      <position>
+        <x>0</x>
+        <y>360</y>
       </position>
     </application>
   </applications>
