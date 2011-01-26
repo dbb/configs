@@ -67,8 +67,12 @@ nmap <leader>s ddpk
 nmap <leader>v "+gP<CR>
 nmap <leader>w :w!<CR>
 
+nmap <leader>I ^i <Esc>i
+
 nmap <leader>$ f$li
 nmap <leader>@ f@li
+nmap <leader>; A;<Esc>^
+
 
 nmap <leader># i#!/usr/bin/env perl<CR>use strict;
     \<CR>use warnings;<CR><esc>:set filetype=perl<ENTER>i<CR>
@@ -117,9 +121,9 @@ filetype plugin on
 filetype indent on
 
 " custom function
-function DarkDefault()
-    colo default
-    set background=dark
-    hi Normal guibg=black guifg=white
-endfunction
+"function DarkDefault()
+"    colo default
+"    set background=dark
+"    hi Normal guibg=black guifg=white
+"endfunction
 
