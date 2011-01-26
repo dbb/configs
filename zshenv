@@ -1,5 +1,5 @@
 # debian
-export DEBEMAIL="dbbolton.tmp@gmail.com"
+export DEBEMAIL="danielbarrettbolton@gmail.com"
 export DEBFULLNAME="Daniel Bolton"
 
 # directories

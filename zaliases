@@ -76,6 +76,7 @@ alias mi='su -c "make install"'
 # misc
 alias clear-hosts="rm -v ~/.ssh/known_hosts"
 alias kiw="kill $(pidof firefox-bin)"
+alias gov='su root -c "cpu-gov"'
 alias q="exit"
 alias :q="exit"
 
