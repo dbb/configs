@@ -3,6 +3,15 @@
 " don't use vi settings
 set nocompatible
 
+" diff options
+set diffopt=vertical,iwhite,filler
+set scrollbind
+
+command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
+	 	\ | wincmd p | diffthis
+
+
+
 " break long lines in plain text files
 autocmd FileType text setlocal textwidth=78
 
@@ -62,6 +71,7 @@ nmap <leader>a A
 nmap <leader>c I#<Esc>
 nmap <leader>d :close<CR>
 nmap <leader>e :colo 
+nmap <leader>h iprint <<'EOF';<CR><Esc>
 nmap <leader>r @:
 nmap <leader>s ddpk
 nmap <leader>v "+gP<CR>

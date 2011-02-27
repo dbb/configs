@@ -1,5 +1,5 @@
 # debian
-export DEBEMAIL="danielbarrettbolton@gmail.com"
+export DEBEMAIL="dan@dbbo.us"
 export DEBFULLNAME="Daniel Bolton"
 
 # directories
@@ -21,7 +21,7 @@ export SAVEHIST=1000
 export LESS='-GRJx4P?f[%f]:[STDIN].?pB - [%pB\%]:\.\.\..'
 
 # mail
-export EMAIL='danielbarrettbolton@gmail.com'
+export EMAIL='dan@dbbo.us'
 export MAIL='/var/spool/mail/daniel'
 
 # make

@@ -18,9 +18,9 @@ sleep 1s && tint2 &
 # xcompmgr -c -t-5 -l-5 -r4.7 -o.65 &
 kmix --keepvisibility &
 #klipper &
-sleep 4s && korganizer &
+#sleep 4s && korganizer &
 
-syndaemon -i 2 -d -t -K
+#syndaemon -i 2 -d -t -K
 $HOME/bin/middle-click
 
 sleep 1s && urxvt &

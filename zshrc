@@ -266,7 +266,6 @@ setprompt
 
 source $HOME/.zaliases
 source $HOME/.zshenv
-source /home/daniel/.zkbd/xterm-:0.0
 source "$HOME/.zfunctions"
 
 

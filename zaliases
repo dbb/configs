@@ -6,6 +6,11 @@ alias v='vim'
 alias we='weechat-curses'
 alias x='startx'
 
+# archives
+alias tx='tar xf'
+alias bx='tar xjf'
+alias bz='tar cjf' # OUT IN
+
 # colors
 eval "`dircolors -b`"
 alias ls='ls --color=auto'
@@ -16,12 +21,20 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
+# cp and scp
+alias cpr='cp -r'
+alias scpr='scp -r'
+
 # games
 alias ng1="mednafen $HOME/games/nes/Ninja_Gaiden_1.nes"
 alias ng2="mednafen $HOME/games/nes/Ninja_Gaiden_2.nes"
 alias ng3="mednafen $HOME/games/nes/Ninja_Gaiden_3.nes"
 
 alias sc="mednafen $HOME/games/nes/Super_C.nes"
+
+# git
+alias gp='git push -u origin master'
+alias gc='git commit -m'
 
 # ls
 alias ll='ls -l'
@@ -58,6 +71,7 @@ alias sz="source $HOME/.zshrc"
 alias va="vim $HOME/.zaliases ; source $HOME/.zaliases"
 alias vz="vim $HOME/.zshrc ; source $HOME/.zshrc"
 alias xdef="vim $HOME/.Xdefaults ; xrdb -load $HOME/.Xdefaults"
+alias xconf='su -c "vim /etc/X11/xorg.conf"'
 
 # find
 alias fh='find . -maxdepth 1 -iname'
@@ -75,10 +89,13 @@ alias mi='su -c "make install"'
 
 # misc
 alias clear-hosts="rm -v ~/.ssh/known_hosts"
+alias duh='du -hs'
 alias kiw="kill $(pidof firefox-bin)"
 alias gov='su root -c "cpu-gov"'
 alias q="exit"
 alias :q="exit"
+alias temp='sensors'
+alias xsr='xsetroot -solid "#303030"'
 
 # net
 alias png='ping -c2'

@@ -4,6 +4,8 @@ use warnings;
 use File::Copy;
 use autodie;
 
+# https://github.com/dbbolton/ 
+
 for (@ARGV) {
     &cp if /^cp$/;
     &ul if /^ul$/;
@@ -42,7 +44,7 @@ sub cp {
 
 sub ul {
     system "git add ./*";
-    system "git commit -m 'updating everything'";
+    system "git commit -m 'update everything'";
     system "git push origin master";
 } # end &ul
 

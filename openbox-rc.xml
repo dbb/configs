@@ -51,7 +51,7 @@
     <keepBorder>yes</keepBorder>
     <animateIconify>no</animateIconify>
     <font place="ActiveWindow">
-      <name>Terminus</name>
+      <name>GohuFont</name>
       <size>8</size>
       <!-- font size in points -->
       <weight>Normal</weight>
@@ -60,7 +60,7 @@
       <!-- 'italic' or 'normal' -->
     </font>
     <font place="InactiveWindow">
-      <name>Terminus</name>
+      <name>GohuFont</name>
       <size>8</size>
       <!-- font size in points -->
       <weight>Normal</weight>
@@ -69,7 +69,7 @@
       <!-- 'italic' or 'normal' -->
     </font>
     <font place="MenuHeader">
-      <name>Terminus</name>
+      <name>GohuFont</name>
       <size>9</size>
       <!-- font size in points -->
       <weight>Normal</weight>
@@ -78,7 +78,7 @@
       <!-- 'italic' or 'normal' -->
     </font>
     <font place="MenuItem">
-      <name>Terminus</name>
+      <name>GohuFont</name>
       <size>9</size>
       <!-- font size in points -->
       <weight>Normal</weight>
@@ -87,7 +87,7 @@
       <!-- 'italic' or 'normal' -->
     </font>
     <font place="OnScreenDisplay">
-      <name>Terminus</name>
+      <name>GohuFont</name>
       <size>8</size>
       <!-- font size in points -->
       <weight>Normal</weight>
@@ -856,7 +856,7 @@
       <decor>no</decor>
       <position>
         <x>0</x>
-        <y>420</y>
+        <y>445</y>
       </position>
     </application>
     <application name="Quodlibet">
@@ -892,14 +892,14 @@
       <skip_taskbar>yes</skip_taskbar>
       <position>
         <x>1032</x>
-        <y>206</y>
+        <y>201</y>
       </position>
     </application>
     <application name="*" role="conversation">
       <!-- pidgin chat  -->
       <position>
         <x>502</x>
-        <y>409</y>
+        <y>406</y>
       </position>
     </application>
     <application class="Thunar">
