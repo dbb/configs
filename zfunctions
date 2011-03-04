@@ -1,4 +1,5 @@
-# debian
+# dbbolton's zsh functions
+# github.com/dbbolton
 
 
 # guitar pro 5
@@ -29,29 +30,34 @@ graph () {
 
 # make a PDF from a man page
 man2pdf () {
-    man -t $1 | ps2pdf - > $1.pd
+    man -t $1 | ps2pdf - > $1.pdf
 }
 
 # instantiate a perl document and open it for editing
 newpl () {
     cp "$HOME/Templates/perl" "./$1"
     chmod +x "./$1"
-    vim "$1" +5
+    vim "$1" +6
 }
 
 # ninja gaiden!
 ng () {
-    mednafen $HOME/games/nes/Ninja_Gaiden_$1.nes
+    mednafen "$HOME/games/nes/Ninja_Gaiden_$1.nes"
 }
 
 # perl global substitution
-pgs() {
-    perl -i~ -pe "s/$1/$2/g" "$3"
+pgs() { # [find] [replace] [filename]
+    perl -i.bak -pe 's/'"$1"'/'"$2"'/g' "$3"
 }
 
 # sagi - a find shortcut
-sagi() {
+sagi() { # [where] [what]
     find "$1" -iname "*$2*"
+}
+
+# say - append a newline to 'print'
+say() {
+    print "$1\n"
 }
 
 # to - makes it easier to cd to a variable that contains a path, e.g.
@@ -72,3 +78,4 @@ zc() {
     string='print $(( '"$argc"' ))'
     eval "$string"
 }
+
