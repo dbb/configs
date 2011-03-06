@@ -50,9 +50,15 @@ pgs() { # [find] [replace] [filename]
     perl -i.bak -pe 's/'"$1"'/'"$2"'/g' "$3"
 }
 
+
+# Perl grep, because 'grep -P' is terrible
+prep() { # [pattern] [filename unless STDOUT]
+    perl -nle 'print if /'"$1"'/;' $2
+}
+
 # sagi - a find shortcut
 sagi() { # [where] [what]
-    find "$1" -iname "*$2*"
+    [[ -n $1 && -n $2  ]] && find "$1" -iname "*$2*"
 }
 
 # say - append a newline to 'print'
@@ -68,14 +74,19 @@ to () {
 }
 
 # vimprobable with tabs
-vpb () {
-    tabbed=$(tabbed -d); vimprobable2 -e $tabbed $*
+#vpb () {
+#    tabbed=$(tabbed -d); vimprobable2 -e $tabbed $*
+#}
+
+# Quick Find
+qf () { 
+	find . -maxdepth 2 -iname "*$1*" 
 }
-quickfind () { find . -maxdepth 2 -iname "*$1*" }
 
 # zsh calculator
 zc() {
-    string='print $(( '"$argc"' ))'
-    eval "$string"
+	for exp in $argv ; do
+		print "$exp = $(( exp ))"
+	done
 }
 
