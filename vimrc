@@ -16,7 +16,7 @@ command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
 autocmd FileType text setlocal textwidth=78
 
 " copy indentation from preceding line
-set autoindent
+"set autoindent
 
 " what backsapce can delete in i mode
 set backspace=eol,start,indent
@@ -24,7 +24,7 @@ set backspace=eol,start,indent
 " keep x commands/search patterns
 set history=20
 
-"set hlsearch " highlight search results
+set hlsearch " highlight search results
 
 set mouse=a " mouse support"
 
@@ -45,7 +45,7 @@ set showcmd
 set showmode
 set ls=2        " always show status bar
 "set statusline=\ %F%m%r%h\ %w\ \ CWD:\ %r%{CurDir()}%h\ \ \ Line:\ %l/%L:%c
-set statusline=%<%1*===\ %5*%f%1*%(\ ===\ %4*%h%1*%)%(\ ===\ %4*%m%1*%)%(\ ===\ %4*%r%1*%)\ ===%====\ %2*%b(0x%B)%1*\ ===\ %3*%l,%c%V%1*\ ===\ %5*%P%1*\ ===%0*
+set statusline=%<%1*───\ %5*%f%1*%(\ ───\ %4*%h%1*%)%(\ ───\ %4*%m%1*%)%(\ ───\ %4*%r%1*%)\ ───%=───\ %2*%b(0x%B)%1*\ ───\ %3*%l,%c%V%1*\ ───\ %5*%P%1*\ ───%0*
 
 set showcmd " show partially entered commands
 set showmode " display INSERT when in i mode
@@ -71,7 +71,7 @@ nmap <leader>a A
 nmap <leader>c I#<Esc>
 nmap <leader>d :close<CR>
 nmap <leader>e :colo 
-nmap <leader>h iprint <<'EOF';<CR><Esc>
+nmap <leader>h iprint <<'EOF';<Esc>^
 nmap <leader>r @:
 nmap <leader>s ddpk
 nmap <leader>v "+gP<CR>
@@ -94,7 +94,7 @@ autocmd! bufwritepost vimrc source ~/.vimrc
 " ---------------------------------------------------------------------------
 
 " tabs
-set expandtab
+"set expandtab
 set shiftwidth=4
 set tabstop=4
 set smarttab
@@ -118,7 +118,11 @@ function! CurDir()
     return curdir
 endfunction
 
-colorscheme lucius88
+if $TERM == 'rxvt-unicode'
+	colorscheme lucius88
+else
+	colorscheme slate
+endif
 
 " pthogen
 filetype off
