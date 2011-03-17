@@ -1,3 +1,5 @@
+#!/bin/sh
+# (The shebang line is only to enable syntax highlighting on GitHub.)
 # dbbolton's zsh functions
 # github.com/dbbolton
 
