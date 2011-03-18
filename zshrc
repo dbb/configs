@@ -6,10 +6,19 @@ umask 022
 bindkey -v
 setopt append_history
 setopt auto_list
+setopt correct
+
+setopt extended_glob
+setopt glob_dots
+setopt nullglob 
+setopt equals
+#setopt glob_subst
+
 setopt extended_history
 setopt hist_ignore_dups
 setopt hist_save_no_dups
 setopt inc_append_history
+setopt interactive_comments
 setopt list_packed
 setopt magic_equal_subst
 setopt nonomatch
@@ -20,14 +29,23 @@ setopt nonomatch
 autoload -U compinit
 compinit
 
+which dircolors >/dev/null && eval "$(dircolors -b)"
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+
 zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
 zstyle ':completion:*:warnings' format '%BNo matches for: %d%b'
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
+zstyle ':completion:*' menu select
+
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.zsh/cache
 
 # setopt correctall
 
 setopt complete_in_word
+setopt list_ambiguous
+
 
 # keys ######################################################################
 autoload zkbd
@@ -77,6 +95,9 @@ bindkey '^xn' history-beginning-search-backward
 bindkey '^X^I' expand-or-complete-prefix
 bindkey '^X^H' expand-history
 
+bindkey '^o' accept-and-infer-next-history
+
+
 
 #############################################################################
 
@@ -118,7 +139,6 @@ function precmd {
 }
 
 
-setopt extended_glob
 preexec () {
     if [[ "$TERM" == "screen" ]]; then
 	local CMD=${1[(wr)^(*=*|sudo|-*)]}
@@ -264,8 +284,8 @@ fi
 
 setprompt
 
-source $HOME/.zaliases
-source $HOME/.zshenv
+source "$HOME/.zaliases"
+source "$HOME/.zshenv"
 source "$HOME/.zfunctions"
-
+source "$HOME/perl/etc/bashrc"
 

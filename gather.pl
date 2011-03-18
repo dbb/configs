@@ -6,6 +6,8 @@ use autodie;
 
 # https://github.com/dbbolton/ 
 
+print "'cp' for copy or 'ul' for upload\n" unless @ARGV;
+
 for (@ARGV) {
     &cp if /^cp$/;
     &ul if /^ul$/;

@@ -33,10 +33,10 @@ URxvt.secondaryScroll:  true
 !URxvt*font:     -xos4-terminus-medium-r-normal-*-14-140-72-72-c-80-iso10646-1
 !URxvt*boldfont: -xos4-terminus-medium-r-normal-*-14-140-72-72-c-80-iso10646-1
 
-URxvt*cursorColor:  #ff6600
+URxvt*cursorColor:  #ff4f00
 URxvt*cursorBlink:   off
 URxvt*pointerColor: #00ff00
-URxvt*background:   #141414
+URxvt*background:   #000000
 URxvt*boldMode:      on
 URxvt*colorMode:     on
 URxvt*colorBDMode:   on
@@ -44,34 +44,36 @@ URxvt*colorULMode:   on
 URxvt*underLine:     on
 
 ! colors --------------------------------------------------------------------
-URxvt*foreground:   #D4D2CF
+URxvt*foreground:   #d4d4d4
 !  black
-URxvt*color0:		#0A0A0A
-URxvt*color8:		#201F1F
-!  red
-URxvt*color1:		#A22618
-URxvt*color9:		#E84C24
-!  green
-URxvt*color2:		#539927
-URxvt*color10:		#70B751
-!  yellow
-URxvt*color3:		#8E6514
-URxvt*color11:		#B4A05A
-!  blue
-URxvt*color4:		#113050
-URxvt*color12:		#275fA0
-!  magenta
-URxvt*color5:		#543973
-URxvt*color13:		#84699B
-!  cyan
-URxvt*color6:		#4D92B4
-URxvt*color14:		#8BCAEA
-!  white
-URxvt*color7:		#A3A29F
+URxvt*color0:		#000000
+URxvt*color8:		#202020
+!  red: sangria, lava
+URxvt*color1:		#92000a
+URxvt*color9:		#c80815
+!  green: india green, neon green
+URxvt*color2:		#138808
+URxvt*color10:		#39ff14
+!  yellow: dark goldenrod, gamboge
+URxvt*color3:		#b8860b
+URxvt*color11:		#ef9b0f
+!  blue: egyptian blue, palatinate blue
+URxvt*color4:		#1034a6
+URxvt*color12:		#273be2
+!  magenta: regalia, amethyst
+URxvt*color5:		#533d80
+URxvt*color13:		#9966cc
+!  cyan: cerulean, electric blue
+URxvt*color6:		#007ba7
+URxvt*color14:		#7df9ff
+!  white: titanium, white
+URxvt*color7:		#e5e4e2
 URxvt*color15:		#D4D2CF
 
-URxvt*colorBD:		#275FA0
-URxvt*colorUL:		#E84C24
+! intl orange
+URxvt*colorBD:		#ff4f00
+! azure
+URxvt*colorUL:		#007fff
 
 ! end colors ----------------------------------------------------------------
 
@@ -84,8 +86,9 @@ URxvt.tabbed.tab-fg:    15
 URxvt.tabbed.tab-bg:    12
 
 ! xterm
+xterm*geometry:      80x25
 xterm*foreground: #b2b2b2
-xterm*background: #00004d
+xterm*background: #000000
 
 !  black
 xterm*color0:		#000000

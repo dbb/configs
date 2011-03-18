@@ -45,7 +45,7 @@ alias l='ls -CF'
 alias cx='chmod +x'
 
 # debian
-alias afs='apt-file search'
+alias afs='apt-file search --regexp'
 alias aps='aptitude search'
 alias apsrc='apt-get source'
 alias apv='apt-cache policy'
@@ -78,7 +78,7 @@ alias fh='find . -maxdepth 1 -iname'
 alias fd='find . -iname'
 
 # grep
-alias igrep='egrep -in'
+alias igrep='egrep -i'
 alias ngrep='egrep -in'
 
 # heredocs

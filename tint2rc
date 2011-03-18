@@ -95,8 +95,19 @@ battery_background_id = 0
 #---------------------------------------------
 # MOUSE ACTION ON TASK
 #---------------------------------------------
-mouse_middle = none
-mouse_right = close
+mouse_middle = close
+mouse_right = none
 mouse_scroll_up = toggle
 mouse_scroll_down = iconify
+
+
+# Tooltips
+tooltip = 1
+tooltip_padding = 0 0
+tooltip_show_timeout = 0
+tooltip_hide_timeout = 0
+tooltip_background_id = 0
+tooltip_font = Myriad Pro 8
+tooltip_font_color = #FFFFFF 100
+
 

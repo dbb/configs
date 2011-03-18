@@ -3,8 +3,10 @@ export DEBEMAIL="dan@dbbo.us"
 export DEBFULLNAME="Daniel Bolton"
 
 # directories
-export CDPATH=".:~:~/source"
+export CDPATH=".:~:~/src"
 export gh="$HOME/src/github"
+export gc="$HOME/src/github/configs"
+export gs="$HOME/src/github/scripts"
 export ob="$HOME/.config/openbox"
 export nes="/mnt/media_files/games/nes"
 export pd="$HOME/perl"
@@ -13,11 +15,15 @@ export pd="$HOME/perl"
 export HISTFILE="$HOME/.zhistory"
 export WWW_HOME='file:///home/daniel/Documents/home.html'
 
+# grep
+#export GREP_OPTIONS='--perl-regexp'
+
 # history
 export HISTSIZE=1000
 export SAVEHIST=1000
 
 # less
+which lesspipe >/dev/null && eval "$(lesspipe)"
 export LESS='-GRJx4P?f[%f]:[STDIN].?pB - [%pB\%]:\.\.\..'
 
 # mail
@@ -33,11 +39,14 @@ export MAKEFLAGS='-j 2'
 
 # path
 typeset -U path
-for dir in ~/bin ~/games; do
+for dir in ~/bin ~/games ~/perl/bin ; do
     if [[ -z ${path[(r)$dir]} ]]; then
         path=($dir $path)
     fi
 done
+
+# perlbrew
+export PERLBREW_ROOT="$HOME/perl"
 
 # programs
 export EDITOR=vim
@@ -45,5 +54,5 @@ export PAGER=less
 export VISUAL=vim
 
 # characters that are not part of a word
-WORDCHARS=${WORDCHARS//[-]}
+export WORDCHARS=${WORDCHARS//[-]}
 

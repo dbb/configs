@@ -36,7 +36,7 @@
        the active window is -->
   </placement>
   <theme>
-    <name>Simple-Nodec</name>
+    <name>Obsidian</name>
     <titleLayout>NLIMC</titleLayout>
     <!--
       available characters are NDSLIMC, each can occur at most once.
@@ -51,16 +51,16 @@
     <keepBorder>yes</keepBorder>
     <animateIconify>no</animateIconify>
     <font place="ActiveWindow">
-      <name>GohuFont</name>
+      <name>Sans</name>
       <size>8</size>
       <!-- font size in points -->
-      <weight>Normal</weight>
+      <weight>Bold</weight>
       <!-- 'bold' or 'normal' -->
       <slant>Normal</slant>
       <!-- 'italic' or 'normal' -->
     </font>
     <font place="InactiveWindow">
-      <name>GohuFont</name>
+      <name>Sans</name>
       <size>8</size>
       <!-- font size in points -->
       <weight>Normal</weight>
@@ -69,8 +69,8 @@
       <!-- 'italic' or 'normal' -->
     </font>
     <font place="MenuHeader">
-      <name>GohuFont</name>
-      <size>9</size>
+      <name>Sans</name>
+      <size>8</size>
       <!-- font size in points -->
       <weight>Normal</weight>
       <!-- 'bold' or 'normal' -->
@@ -78,8 +78,8 @@
       <!-- 'italic' or 'normal' -->
     </font>
     <font place="MenuItem">
-      <name>GohuFont</name>
-      <size>9</size>
+      <name>Sans</name>
+      <size>8</size>
       <!-- font size in points -->
       <weight>Normal</weight>
       <!-- 'bold' or 'normal' -->
@@ -87,7 +87,7 @@
       <!-- 'italic' or 'normal' -->
     </font>
     <font place="OnScreenDisplay">
-      <name>GohuFont</name>
+      <name>Sans</name>
       <size>8</size>
       <!-- font size in points -->
       <weight>Normal</weight>
@@ -263,7 +263,7 @@
         <menu>client-menu</menu>
       </action>
     </keybind>
-    <keybind key="W-S-j">
+    <keybind key="W-j">
       <!-- minimize -->
       <action name="Iconify"/>
     </keybind>
@@ -842,16 +842,9 @@
       <y>-0</y>
       </position>
     </application> -->
-    <application class="*">
+    <!--   <application class="*">
       <decor>no</decor>
-    </application>
-    <application class="UXTerm">
-      <decor>no</decor>
-      <position>
-        <x>0</x>
-        <y>438</y>
-      </position>
-    </application>
+	</application>-->
     <application class="URxvt">
       <decor>no</decor>
       <position>
