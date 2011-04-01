@@ -1,0 +1,186 @@
+/*
+Konqueror stylesheet based on Obsidian Coast by dbbolton
+
+*/
+
+
+/*
+ * Font sizes
+ */
+
+* { 
+  font-size : 11px ! important; 
+}
+
+SMALL, SUB, SUP {
+  font-size : 8px ! important;
+}
+
+BIG {
+  font-size : 13px ! important;
+}
+
+H1, H1 A {
+  font-size : 19px ! important;
+}
+
+H2, H2 A {
+  font-size : 17px ! important;
+}
+
+H3, H3 A {
+  font-size : 16px ! important;
+}
+
+H4, H4 A {
+  font-size : 15px ! important;
+}
+
+H5, H5 A {
+  font-size : 13px ! important;
+}
+
+
+/*
+ * Colors
+ */
+
+* {
+	background : #2e2d2d ! important;
+	color : #e0dedb ! important;
+}
+
+body {
+	color : #e0dedb ! important;
+	margin-top:100px;
+	margin-bottom:100px;
+	margin-right:250px;
+	margin-left:250px;
+}
+
+table, td, {
+	border-color : #888888 ! important;
+	border-style:solid;
+	border-width:1px;
+}
+
+
+/*
+ * Fonts
+ */
+
+html>body {
+	font-size: 100% !important;
+	line-height: normal !important;
+}
+
+
+/*
+ * Images
+ */
+
+IMG {
+  
+}
+
+
+body {
+	color:#e0e0e0;
+	background-color:#333333;
+	background-image : none ! important;
+	font-family: 'DejaVu Sans' ! important;
+	font-size: 9pt;
+}
+
+a {
+	font-family: 'DejaVu Sans' ! important;
+}
+
+a:link {
+	color:#4F8FD8 ! important ;
+}
+
+a:visited {
+	color:#8E79A5 ! important ;
+}
+
+a:hover {
+	color:#E85848 ! important ;
+}
+
+p {
+	font-family: 'Liberation Serif' ! important;
+}
+
+div.content {
+	font-family: 'DejaVu Sans' !important;
+}
+
+/* Tweak for the Debian and Gentoo Forums */
+
+code, td.code, kbd, pre {
+	font-family: 'DejaVu Sans Mono' ! important ;
+	color:#79B753 ! important ;
+	background:#1f1f1f ! important ;
+}
+
+div.post {
+	border-color : #bbbbbb ! important;
+	border-style:solid;
+	border-width:1px;
+}
+
+textarea {
+	font-family: 'DejaVu Sans Mono' ! important ;
+	color:#79B753 ! important ;
+	background:#1f1f1f ! important ;
+	min-width: 25ex !important;
+	min-height: 6em !important;
+}
+input {
+	font-family: 'DejaVu Sans Mono' ! important ;
+	color:#b4a05a ! important ;
+	background:#1f1f1f ! important ;
+}
+/* Put a thin black border around all dropdown forms like NS4.x */
+:-moz-dropdown-list {
+  border: 1px solid black !important;
+  border-top-style: solid !important;
+}
+
+/* Disable marquee display */
+marquee {
+  -moz-binding: none; display: block; height: auto !important;
+  /* This is better than just display:none !important;
+   * because you can still see the text in the marquee,
+   * but without scrolling.
+   */
+}
+
+
+/*
+ * Until bug 105547 is fixed, a helpful workaround to
+ * highlight some links which would pop up a new window:
+ */
+:link:hover[target="_blank"],:visited:hover[target="_blank"] {
+  color: white !important; background: red !important;
+}
+:link:hover[target="_new"],:visited:hover[target="_new"] {
+  color: white !important; background: red !important;
+}
+
+/*
+ * Ignore user-specified style in mail messages.
+ * See http://bugzilla.mozilla.org/show_bug.cgi?id=18427 for details.
+ */
+.moz-text-html font, .moz-text-html div, .moz-text-html body {
+  font-size: inherit !important;
+  font-family: inherit !important;
+  color: inherit !important;
+  background-color: inherit !important;
+  background-image: inherit !important;
+  text-align: inherit !important;
+  text-indent: inherit !important;
+}
+
+
