@@ -306,21 +306,21 @@
 			<item label="OOffice Calc">
 				<action name="Execute">
 					<execute>
-						oocalc
+						localc
 					</execute>
 				</action>
 			</item>
 			<item label="OOffice Impress">
 				<action name="Execute">
 					<execute>
-						ooimpress
+						loimpress
 					</execute>
 				</action>
 			</item>
 			<item label="OOffice Writer">
 				<action name="Execute">
 					<execute>
-						oowriter
+						lowriter
 					</execute>
 				</action>
 			</item>

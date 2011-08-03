@@ -15,7 +15,7 @@ URxvt*scrollTtyKeypress: true
 URxvt*geometry:      96x30
 URxvt*highlightSelection: true
 URxvt*transparent: true
-URxvt*shading: 20
+URxvt*shading: 3
 !URxvt*tintColor: #000000
 !URxvt*blurRadius: 5
 
@@ -23,16 +23,36 @@ URxvt.scrollstyle:      plain
 URxvt.secondaryScroll:  true
 
 
-! gohu fonts
+! gohufont, small
 *font: -gohu-gohufont-medium-r-normal--11-80-100-100-c-60-iso10646-1
 *boldFont: -gohu-gohufont-medium-r-normal--11-80-100-100-c-60-iso10646-1
 
+! gohufont, large
+!*font: -*-gohufont-medium-*-*-*-14-*-*-*-*-*-*-*
+
+! MonteCarlo
+!*font: -*-montecarlo-medium-r-normal-*-11-110-72-72-c-60-*-*
+!*boldFont: -*-montecarlo-medium-r-normal-*-11-110-72-72-c-60-*-*
+
+! proggy
+!*font: -*-proggysquare-medium-r-normal-*-11-80-96-96-c-70-iso8859-1
+!*boldFont: -*-proggysquare-medium-r-normal-*-11-80-96-96-c-70-iso8859-1
+
 ! xft fonts
-!URxvt*font:             xft:Mensch:pixelsize=11
+!Xft.antialias:			true
+!URxvt*font:             xft:Mensch:pixelsize=12
 !URxvt*boldFont:             xft:Mensch:pixelsize=11
 
-!URxvt*font:             xft:DejaVu Sans Mono:pixelsize=12
-!URxvt*boldFont:             xft:DejaVu Sans Mono:pixelsize=12
+!URxvt*font:		xft:DejaVu Sans Mono:pixelsize=13
+!URxvt*boldFont:		xft:DejaVu Sans Mono:style=Bold:pixelsize=13
+
+!URxvt*font:			xft:Monaco:pixelsize=11
+!URxvt*boldFont:			xft:Monaco:pixelsize=11
+
+!URxvt*font:			xft:ProggySquareTTSZ:pixelsize=16
+!URxvt*boldFont:			xft:ProggySquareTTSZ:pixelsize=16
+
+!URxvt*font:			xft:Consolas:pixelsize=14
 
 ! small terminus fonts
 !URxvt*font:     -xos4-terminus-medium-r-normal-*-12-120-72-72-c-60-iso10646-1

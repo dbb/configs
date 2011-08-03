@@ -328,7 +328,7 @@
       </keybind>
       <keybind key="k">
         <action name="Execute">
-          <command>thunar /home/daniel/Desktop</command>
+          <command>thunar /home/dbb/Desktop</command>
         </action>
       </keybind>
       <keybind key="n">
@@ -338,12 +338,12 @@
       </keybind>
       <keybind key="w">
         <action name="Execute">
-          <command>thunar /home/daniel/downloads</command>
+          <command>thunar /home/dbb/downloads</command>
         </action>
       </keybind>
       <keybind key="c">
         <action name="Execute">
-          <command>thunar /home/daniel/Documents</command>
+          <command>thunar /home/dbb/Documents</command>
         </action>
       </keybind>
       <keybind key="b">
@@ -849,7 +849,7 @@
       <decor>no</decor>
       <position>
         <x>0</x>
-        <y>445</y>
+        <y>271</y>
       </position>
     </application>
     <application name="Quodlibet">

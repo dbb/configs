@@ -10,11 +10,12 @@ set scrollbind
 command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
 	 	\ | wincmd p | diffthis
 
-
+" diable auto-commenting
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " break long lines in plain text files
 " use gqq
-set textwidth=78
+"set textwidth=78
 
 " copy indentation from preceding line
 "set autoindent
@@ -62,7 +63,7 @@ syntax on
 
 " force a file's syntax highlighting type
 au BufNewFile,BufRead .vimperatorrc setf vim
-
+au BufNewFile,BufRead *.md set filetype=md
 
 " extra bindings ------------------------------------------------------------
 let mapleader = ","
@@ -73,6 +74,7 @@ nmap <leader>c 0i#<Esc>
 nmap <leader>d :close<CR>
 nmap <leader>e :colo 
 nmap <leader>h iprint <<'EOF';<Esc>^
+nmap <leader>o iopen(my $,  "<",  "");<Esc>^f$a
 nmap <leader>r @:
 nmap <leader>s ddpk
 nmap <leader>t :source ~/.vim/scripts/tidydiff.vim
@@ -87,7 +89,7 @@ nmap <leader>; A;<Esc>^
 
 
 nmap <leader># i#!/usr/bin/env perl<CR>use strict;
-    \<CR>use warnings;<CR><esc>:set filetype=perl<ENTER>i<CR>
+    \<CR>use warnings;<CR>use 5.010;<cr><esc>:set filetype=perl<ENTER>i<CR>
 
 " maps that override default commands
 nmap t :tabnew 
@@ -116,7 +118,7 @@ map <C-l> <C-W>l
 
 
 function! CurDir()
-    let curdir = substitute(getcwd(), '/home/daniel/', "~/", "g")
+    let curdir = substitute(getcwd(), '/home/dbb/', "~/", "g")
     return curdir
 endfunction
 
@@ -143,4 +145,13 @@ filetype indent on
 "    hi Normal guibg=black guifg=white
 "endfunction
 
+function! SetExecutableBit()
+  let fname = expand("%:p")
+  checktime
+  execute "au FileChangedShell " . fname . " :echo"
+  silent !chmod a+x %
+  checktime
+  execute "au! FileChangedShell " . fname
+endfunction
+command! Xbit call SetExecutableBit()
 

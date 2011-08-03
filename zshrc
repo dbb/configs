@@ -134,7 +134,11 @@ function precmd {
     # battery info
     if which acpi > /dev/null; then
         #PR_ACPI=`acpi -b | awk '{print $4}'`
-        PR_ACPI=`acpi -b | perl -ne 'print $1 if /(\d+)%/;'`
+        charge_pct=`acpi -b | perl -ne 'print $1."%%" if /(\d+)%/;'`
+		pwr_src=`acpi -a | perl -ne 'if (/off-line/) { print "Bat"; } elsif (/on-line/) { print "AC"; } else { print "?"; }'`
+		PR_ACPI="$charge_pct $pwr_src"
+	else
+		PR_ACPI='?'
     fi
 }
 
@@ -263,7 +267,7 @@ $PR_BLACK$PR_SHIFT_IN$PR_HBAR$PR_SHIFT_OUT\
 $PR_NO_COLOR%# '
 
     RPROMPT=' $PR_BLACK$PR_SHIFT_IN$PR_BLACK$PR_SHIFT_OUT\
-(${PR_GREEN}${PR_ACPI}%%${PR_NO_COLOR},${PR_RED}%D{%l:%M%p}$PR_BLACK)$PR_SHIFT_IN$PR_HBAR$PR_BLACK$PR_LRCORNER$PR_SHIFT_OUT$PR_NO_COLOR'
+(${PR_GREEN}${PR_ACPI}${PR_NO_COLOR},${PR_RED}%D{%l:%M%p}$PR_BLACK)$PR_SHIFT_IN$PR_HBAR$PR_BLACK$PR_LRCORNER$PR_SHIFT_OUT$PR_NO_COLOR'
 
     PS2='$PR_BLACK$PR_SHIFT_IN$PR_HBAR$PR_SHIFT_OUT\
 $PR_BLACK$PR_SHIFT_IN$PR_HBAR$PR_SHIFT_OUT(\

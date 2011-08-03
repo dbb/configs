@@ -13,7 +13,7 @@ export pd="$HOME/perl"
 
 # files
 export HISTFILE="$HOME/.zhistory"
-export WWW_HOME='file:///home/daniel/Documents/home.html'
+export WWW_HOME='/home/dbb/Documents/home.html'
 
 # grep
 #export GREP_OPTIONS='--perl-regexp'

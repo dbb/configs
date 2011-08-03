@@ -26,10 +26,11 @@ sub cp {
         "$cfg/$ob/menu.xml"       => "openbox-menu.xml",
         "$cfg/$ob/rc.xml"         => "openbox-rc.xml",
 
+		".perltidyrc"		=> "perltidyrc",
         ".screenrc"          => "screenrc",
         "$cfg/tint2/tint2rc" => "tint2rc",
         ".vimrc"             => "vimrc",
-        ".Xdefaults"         => "Xdefaults",
+        ".Xresources"         => "Xresources",
 
         ".zshrc"      => "zshrc",
         ".zaliases"   => "zaliases",
